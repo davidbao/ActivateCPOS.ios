@@ -199,6 +199,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = com;
 				TargetAttributes = {
+					623EDF06188BEA1400437D1D = {
+						DevelopmentTeam = FW5776TL36;
+					};
 					623EDF27188BEA1400437D1D = {
 						TestTargetID = 623EDF06188BEA1400437D1D;
 					};
@@ -378,6 +381,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActivateCPOS/ActivateCPOS-Prefix.pch";
 				INFOPLIST_FILE = "ActivateCPOS/ActivateCPOS-Info.plist";
@@ -391,6 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ActivateCPOS/ActivateCPOS-Prefix.pch";
 				INFOPLIST_FILE = "ActivateCPOS/ActivateCPOS-Info.plist";
