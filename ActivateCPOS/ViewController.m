@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+#define NUMBERS_ONLY @"1234567890"
+#define CHARACTER_LIMIT 8
+
 @interface ViewController ()
 
 @end
@@ -24,6 +27,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT));
 }
 
 @end
