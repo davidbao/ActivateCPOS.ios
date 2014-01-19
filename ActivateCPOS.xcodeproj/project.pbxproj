@@ -465,6 +465,7 @@
 				623EDF3B188BEA1400437D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		623EDF3C188BEA1400437D1D /* Build configuration list for PBXNativeTarget "ActivateCPOSTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +474,7 @@
 				623EDF3E188BEA1400437D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

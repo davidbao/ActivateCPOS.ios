@@ -10,6 +10,8 @@
 
 @interface ViewController : UITableViewController
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 
+@property (weak, nonatomic) IBOutlet UITextField *textStationId;
 
 @end
