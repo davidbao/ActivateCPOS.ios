@@ -30,4 +30,9 @@
 
 - (IBAction)activationClick:(UIButton *)sender;
 
+- (BOOL) connectedToNetwork;
+- (void) callActivationService:(NSString*)stationId installCode:(NSString*)installCode;
+
+- (void) msbox:(NSString*) str;
+
 @end

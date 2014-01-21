@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "Reachability.h"
+#import "ASIFormDataRequest.h"
 
 #define NUMBERS_ONLY @"1234567890"
 #define CHARACTER_LIMIT8 8
@@ -92,44 +94,139 @@
     }
 }
 
+- (BOOL) connectedToNetwork{
+    Reachability* reachability = [Reachability reachabilityWithHostName:@"google.com"];
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+    
+    BOOL isInternet = FALSE;
+    if(remoteHostStatus == NotReachable)
+    {
+        isInternet = FALSE;
+    }
+    else if (remoteHostStatus == ReachableViaWWAN)
+    {
+        isInternet = TRUE;
+    }
+    else if (remoteHostStatus == ReachableViaWiFi)
+    {
+        isInternet = TRUE;
+        
+    }
+    return isInternet;
+}
+
+- (void) msbox:(NSString*) str{
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"错误", nil)
+                                                         message:str
+                                                         delegate:nil
+                                               cancelButtonTitle:NSLocalizedString(@"确定", nil)
+                                               otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSLog(@"status code %d",request.responseStatusCode);
+    
+    if(request.responseStatusCode == 200)
+    {
+        NSLog(@"success");
+        NSString *responseString = [request responseString];
+        NSLog(@"%@",responseString);
+        
+        
+        NSError  *error  = NULL;
+        NSRegularExpression *regex = [NSRegularExpression
+                                      regularExpressionWithPattern:@"<ActivateResult>.*</ActivateResult>"
+                                      options:0
+                                      error:&error];
+        NSRange range   = [regex rangeOfFirstMatchInString:responseString
+                                                   options:0
+                                                     range:NSMakeRange(0, [responseString length])];
+        NSString *result = [responseString substringWithRange:range];
+        
+        [self msbox:result];
+    }
+    
+    NSLog(@"request finished");
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    NSLog(@"%@",error.localizedDescription);
+    
+    [self msbox:@"网络通讯错误，无法激活"];
+}
+
+- (void) callActivationService:(NSString*)stationId installCode:(NSString*)installCode{
+    NSURL *url = [NSURL URLWithString:@"http://northloong.com:8733/ActivateService.asmx"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setRequestMethod:@"POST"];
+    [request addRequestHeader:@"Content-Type" value:@"text/xml; charset=utf-8"];
+    [request addRequestHeader:@"SOAPAction" value:@"http://tempuri.org/Activate"];
+    
+    /*
+     <?xml version="1.0" encoding="utf-8"?>
+     <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+     <soap:Body>
+     <Activate xmlns="http://tempuri.org/">
+     <stationNo>string</stationNo>
+     <installCode>string</installCode>
+     </Activate>
+     </soap:Body>
+     </soap:Envelope>
+     */
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+                             "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<soap:Body>\n"
+                             "<Activate xmlns=\"http://tempuri.org/\">\n"
+                             "<stationNo>%@</stationNo>\n"
+                             "<installCode>%@</installCode>\n"
+                             "</Activate>\n"
+                             "</soap:Body>\n"
+                             "</soap:Envelope>\n", stationId, installCode ];
+    NSString *messageLength = [NSString stringWithFormat:@"%d",[soapMessage length]];
+    [request addRequestHeader:@"Content-Length" value:messageLength];
+    [request appendPostData:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
 - (IBAction)activationClick:(UIButton *)sender {
     Boolean ignoreStationId = _clickCount >= MaxClickCount;
     _clickCount = 0;
     _currentTime = 0;
-    if (ignoreStationId) {
+
+    NSString* idStr = @"";
+    if (!ignoreStationId) {
+        idStr = _textStationId.text;
+        if([_textStationId.text length] < CHARACTER_LIMIT8){
+            [self msbox:@"油站编码由8个数字组成，请正确输入"];
+            return;
+        }
+    }
+    else{
+        idStr = @"ignore_StationId";
     }
     
-//    NSURL *url = [NSURL URLWithString:@"http://northloong.com:8733/ActivateService.asmx"];
-//    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-//    [request setRequestMethod:@"POST"];
-//    [request addRequestHeader:@"Content-Type" value:@"text/xml; charset=utf-8"];
-//    [request addRequestHeader:@"SOAPAction" value:@"http://tempuri.org/HelloWorld"];
-//    
-//    
-//    NSString *soapMessage = [NSString stringWithFormat:
-//                             @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-//                             
-//                             "<soap:Envelope
-//                                                 xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-//                                                 xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-//                                                 xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"
-//                             "<soap:Body>"
-//                             "<Greet xmlns=\"http://tempuri.org/\">"
-//                             "<deviceToken>some device token</deviceToken>"
-//                             "<userName>azamsharp</userName>"
-//                             "</Greet>"
-//                             "</soap:Body>"
-//                             "</soap:Envelope>"];
-//    
-//    NSString *messageLength = [NSString stringWithFormat:@"%d",[soapMessage length]];
-//    
-//    [request addRequestHeader:@"Content-Length" value:messageLength];
-//    
-//    [request appendPostData:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    [request setDelegate:self]; 
-//    [request startAsynchronous];
-   
+    NSArray* codeViews = [NSArray arrayWithObjects:_textCode1, _textCode2, _textCode3, _textCode4, nil];
+    for (UITextField* codeView in codeViews) {
+        if ([codeView.text length] < CHARACTER_LIMIT5) {
+            [self msbox:@"安装码由4组5个数字组成，请正确输入"];
+            return;
+        }
+    }
+    
+    if(![self connectedToNetwork]){
+        [self msbox:@"网络通讯错误，无法激活"];
+        return;
+    }
+    
+    NSString* installCode = [NSString stringWithFormat:@"%@-%@-%@-%@",
+                             _textCode1.text, _textCode2.text, _textCode3.text, _textCode4.text];
+    [self callActivationService:idStr installCode:installCode];
 }
 
 @end
