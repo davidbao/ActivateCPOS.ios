@@ -36,12 +36,26 @@
     //The setup code (in viewDidLoad in your view controller)
     UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [self.view addGestureRecognizer:singleFingerTap];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    //[tap release];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dismissKeyboard
+{
+    NSArray* subviews = [NSArray arrayWithObjects:_textStationId, _textCode1, _textCode2, _textCode3, _textCode4, nil];
+    for (UITextField* theTextField in subviews){
+        if ([theTextField isFirstResponder]){
+            [theTextField resignFirstResponder];
+        }
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
@@ -124,20 +138,16 @@
     
     if(regex != nil){
         // 执行匹配的过程
-        NSArray *matches = [regex matchesInString:pattern
+        NSArray *matches = [regex matchesInString:str
                                           options:0
-                                            range:NSMakeRange(0, [pattern length])];
+                                            range:NSMakeRange(0, [str length])];
         
         // 用下面的办法来遍历每一条匹配记录
         for (NSTextCheckingResult *match in matches) {
             NSRange r1 = [match rangeAtIndex:1];
             if (!NSEqualRanges(r1, NSMakeRange(NSNotFound, 0))) {    // 由时分组1可能没有找到相应的匹配，用这种办法来判断
-                NSString *infoString = [pattern substringWithRange:r1];  // 分组1所对应的串
-                
-                
-                _textActivationCode.text = infoString;
-                [self msbox:infoString];
-                break;
+                NSString *infoString = [str substringWithRange:r1];  // 分组1所对应的
+                return infoString;
             }
         }
     }
@@ -145,12 +155,17 @@
 }
 
 - (void) msbox:(NSString*) str{
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"错误", nil)
+    [self msbox:@"错误" info:str];
+}
+
+- (void) msbox:(NSString*) title info:(NSString*)str{
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(title, nil)
                                                          message:str
-                                                         delegate:nil
+                                                        delegate:nil
                                                cancelButtonTitle:NSLocalizedString(@"确定", nil)
                                                otherButtonTitles:nil];
     [errorAlert show];
+
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -167,16 +182,17 @@
         
         NSString* str = [self getPatternString:@"<ActivateResult>(.*)</ActivateResult>" dealString:responseString];
         if(str != nil && [str length] > 0){
-            NSString* str2 = [self getPatternString:@"激活码为(\d{5}-\d{5}-\d{5}-\d{5}-\d{5})" dealString:responseString];
+            NSString* str2 = [self getPatternString:@"激活码为(\\d{5}-\\d{5}-\\d{5}-\\d{5}-\\d{5})" dealString:str];
             if(str2 != nil && [str2 length] > 0){
                 _textActivationCode.text = str2;
             }
             else{
-                NSString* str3 = [self getPatternString:@"\A(\d{5}-\d{5}-\d{5}-\d{5}-\d{5})\z" dealString:responseString];
+                NSString* str3 = [self getPatternString:@"\\A(\\d{5}-\\d{5}-\\d{5}-\\d{5}-\\d{5})\\z" dealString:str];
                 if(str3 != nil && [str3 length] > 0){
                     _textActivationCode.text = str3;
                 }
             }
+            [self msbox:@"消息" info:str];
         }
     }
     
@@ -229,11 +245,13 @@
 }
 
 - (IBAction)activationClick:(UIButton *)sender {
+    [self dismissKeyboard];
+    
     Boolean ignoreStationId = _clickCount >= MaxClickCount;
     _clickCount = 0;
     _currentTime = 0;
 
-    NSString* idStr = @"";
+    NSString* idStr = @"32550492";
     if (!ignoreStationId) {
         idStr = _textStationId.text;
         if([_textStationId.text length] < CHARACTER_LIMIT8){
@@ -253,14 +271,18 @@
         }
     }
     
+    _buttonActivate.enabled = false;
+    
     if(![self connectedToNetwork]){
         [self msbox:@"网络通讯错误，无法激活"];
+        _buttonActivate.enabled = true;
         return;
     }
     
-    _buttonActivate.enabled = false;
     NSString* installCode = [NSString stringWithFormat:@"%@-%@-%@-%@",
                              _textCode1.text, _textCode2.text, _textCode3.text, _textCode4.text];
+    
+    //installCode = @"52062-27369-14061-14546";
     [self callActivationService:idStr installCode:installCode];
 }
 

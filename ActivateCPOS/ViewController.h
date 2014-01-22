@@ -36,6 +36,7 @@
 
 - (NSString*) getPatternString:(NSString*) pattern dealString:(NSString*) str;
 
+- (void) msbox:(NSString*) title info:(NSString*)str;
 - (void) msbox:(NSString*) str;
 
 @end
