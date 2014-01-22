@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textCode3;
 @property (weak, nonatomic) IBOutlet UITextField *textCode4;
 @property (weak, nonatomic) IBOutlet UITextField *textActivationCode;
+@property (weak, nonatomic) IBOutlet UIButton *buttonActivate;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 
@@ -32,6 +33,8 @@
 
 - (BOOL) connectedToNetwork;
 - (void) callActivationService:(NSString*)stationId installCode:(NSString*)installCode;
+
+- (NSString*) getPatternString:(NSString*) pattern dealString:(NSString*) str;
 
 - (void) msbox:(NSString*) str;
 

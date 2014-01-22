@@ -115,6 +115,35 @@
     return isInternet;
 }
 
+- (NSString*) getPatternString:(NSString*) pattern dealString:(NSString*) str{
+    NSError  *error  = NULL;
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern:pattern
+                                  options:0
+                                  error:&error];
+    
+    if(regex != nil){
+        // 执行匹配的过程
+        NSArray *matches = [regex matchesInString:pattern
+                                          options:0
+                                            range:NSMakeRange(0, [pattern length])];
+        
+        // 用下面的办法来遍历每一条匹配记录
+        for (NSTextCheckingResult *match in matches) {
+            NSRange r1 = [match rangeAtIndex:1];
+            if (!NSEqualRanges(r1, NSMakeRange(NSNotFound, 0))) {    // 由时分组1可能没有找到相应的匹配，用这种办法来判断
+                NSString *infoString = [pattern substringWithRange:r1];  // 分组1所对应的串
+                
+                
+                _textActivationCode.text = infoString;
+                [self msbox:infoString];
+                break;
+            }
+        }
+    }
+    return @"";
+}
+
 - (void) msbox:(NSString*) str{
     UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"错误", nil)
                                                          message:str
@@ -126,6 +155,8 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    _buttonActivate.enabled = true;
+    
     NSLog(@"status code %d",request.responseStatusCode);
     
     if(request.responseStatusCode == 200)
@@ -134,18 +165,19 @@
         NSString *responseString = [request responseString];
         NSLog(@"%@",responseString);
         
-        
-        NSError  *error  = NULL;
-        NSRegularExpression *regex = [NSRegularExpression
-                                      regularExpressionWithPattern:@"<ActivateResult>.*</ActivateResult>"
-                                      options:0
-                                      error:&error];
-        NSRange range   = [regex rangeOfFirstMatchInString:responseString
-                                                   options:0
-                                                     range:NSMakeRange(0, [responseString length])];
-        NSString *result = [responseString substringWithRange:range];
-        
-        [self msbox:result];
+        NSString* str = [self getPatternString:@"<ActivateResult>(.*)</ActivateResult>" dealString:responseString];
+        if(str != nil && [str length] > 0){
+            NSString* str2 = [self getPatternString:@"激活码为(\d{5}-\d{5}-\d{5}-\d{5}-\d{5})" dealString:responseString];
+            if(str2 != nil && [str2 length] > 0){
+                _textActivationCode.text = str2;
+            }
+            else{
+                NSString* str3 = [self getPatternString:@"\A(\d{5}-\d{5}-\d{5}-\d{5}-\d{5})\z" dealString:responseString];
+                if(str3 != nil && [str3 length] > 0){
+                    _textActivationCode.text = str3;
+                }
+            }
+        }
     }
     
     NSLog(@"request finished");
@@ -153,6 +185,8 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
+    _buttonActivate.enabled = true;
+    
     NSError *error = [request error];
     NSLog(@"%@",error.localizedDescription);
     
@@ -224,6 +258,7 @@
         return;
     }
     
+    _buttonActivate.enabled = false;
     NSString* installCode = [NSString stringWithFormat:@"%@-%@-%@-%@",
                              _textCode1.text, _textCode2.text, _textCode3.text, _textCode4.text];
     [self callActivationService:idStr installCode:installCode];

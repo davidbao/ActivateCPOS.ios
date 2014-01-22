@@ -176,6 +176,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="_textStationId" destination="1UL-9p-odu" id="iqO-cO-3Nw"/>
+                        <outlet property="buttonActivate" destination="due-j6-XH4" id="jFp-UM-eyT"/>
                         <outlet property="textActivationCode" destination="j3K-rO-0c7" id="5It-eI-ck2"/>
                         <outlet property="textCode1" destination="paA-vO-uqg" id="Cb3-MB-7KD"/>
                         <outlet property="textCode2" destination="lNY-vr-Fwh" id="2ZA-nf-91j"/>
