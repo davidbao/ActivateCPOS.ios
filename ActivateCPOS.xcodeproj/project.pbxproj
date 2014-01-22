@@ -37,7 +37,6 @@
 		62A0A6B4188E94AD002301C8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A0A6B3188E94AD002301C8 /* SystemConfiguration.framework */; };
 		62A0A6B9188E98C1002301C8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A0A6B6188E95B0002301C8 /* Reachability.m */; };
 		62A0A6BA188E9954002301C8 /* Reachability.m in Resources */ = {isa = PBXBuildFile; fileRef = 62A0A6B6188E95B0002301C8 /* Reachability.m */; };
-		62C3892718900336001456A0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 62C3892618900336001456A0 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +98,6 @@
 		62A0A6B3188E94AD002301C8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		62A0A6B5188E95B0002301C8 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		62A0A6B6188E95B0002301C8 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		62C3892618900336001456A0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +161,6 @@
 		623EDEFE188BEA1400437D1D = {
 			isa = PBXGroup;
 			children = (
-				62C3892618900336001456A0 /* Default-568h@2x.png */,
 				621C2101188EA94200F7D464 /* Classes */,
 				623EDF10188BEA1400437D1D /* ActivateCPOS */,
 				623EDF2F188BEA1400437D1D /* ActivateCPOSTests */,
@@ -324,7 +321,6 @@
 				623EDF23188BEA1400437D1D /* Images.xcassets in Resources */,
 				623EDF15188BEA1400437D1D /* InfoPlist.strings in Resources */,
 				62A0A6BA188E9954002301C8 /* Reachability.m in Resources */,
-				62C3892718900336001456A0 /* Default-568h@2x.png in Resources */,
 				623EDF1E188BEA1400437D1D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
