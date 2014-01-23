@@ -70,24 +70,28 @@
 - (IBAction)textStationIdChanged:(UITextField *)sender {
     if ([_textStationId.text length] == CHARACTER_LIMIT8) {
         [_textCode1 becomeFirstResponder];
+        [_textCode1 selectAll:self];
     }
 }
 
 - (IBAction)textCode1Changed:(UITextField *)sender {
     if ([_textCode1.text length] == CHARACTER_LIMIT5) {
         [_textCode2 becomeFirstResponder];
+        [_textCode2 selectAll:self];
     }
 }
 
 - (IBAction)textCode2Changed:(UITextField *)sender {
     if ([_textCode2.text length] == CHARACTER_LIMIT5) {
         [_textCode3 becomeFirstResponder];
+        [_textCode3 selectAll:self];
     }
 }
 
 - (IBAction)textCode3Changed:(UITextField *)sender {
     if ([_textCode3.text length] == CHARACTER_LIMIT5) {
         [_textCode4 becomeFirstResponder];
+        [_textCode4 selectAll:self];
     }
 }
 
