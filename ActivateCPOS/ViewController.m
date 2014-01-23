@@ -237,7 +237,7 @@
                              "</Activate>\n"
                              "</soap:Body>\n"
                              "</soap:Envelope>\n", stationId, installCode ];
-    NSString *messageLength = [NSString stringWithFormat:@"%d",[soapMessage length]];
+    NSString *messageLength = [NSString stringWithFormat:@"%lu",(unsigned long)[soapMessage length]];
     [request addRequestHeader:@"Content-Length" value:messageLength];
     [request appendPostData:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
     [request setDelegate:self];

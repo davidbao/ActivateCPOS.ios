@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UITableViewController{
-    int _currentTime;  // unit: ms
+    long _currentTime;  // unit: ms
     int _clickCount;
 }
 
