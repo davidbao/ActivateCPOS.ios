@@ -34,28 +34,14 @@
     _textCode4.delegate = (id)self;
     
     //The setup code (in viewDidLoad in your view controller)
-    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap)];
     [self.view addGestureRecognizer:singleFingerTap];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-    //[tap release];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)dismissKeyboard
-{
-    NSArray* subviews = [NSArray arrayWithObjects:_textStationId, _textCode1, _textCode2, _textCode3, _textCode4, nil];
-    for (UITextField* theTextField in subviews){
-        if ([theTextField isFirstResponder]){
-            [theTextField resignFirstResponder];
-        }
-    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
@@ -95,8 +81,16 @@
     }
 }
 
+- (void) dismissKeyboard{
+    NSArray* subviews = [NSArray arrayWithObjects:_textStationId, _textCode1, _textCode2, _textCode3, _textCode4, nil];
+    for (UITextField* theTextField in subviews){
+        if ([theTextField isFirstResponder]){
+            [theTextField resignFirstResponder];
+        }
+    }
+}
 //The event handling method
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+- (void)handleSingleTap{
     long time = [[NSDate date] timeIntervalSince1970];
     if(_currentTime == 0 || time - _currentTime < 1000){
         _clickCount++;
@@ -110,6 +104,8 @@
         _clickCount = 0;
         _currentTime = 0;
     }
+    
+    [self dismissKeyboard];
 }
 
 - (BOOL) connectedToNetwork{

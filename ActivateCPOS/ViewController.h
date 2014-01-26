@@ -39,4 +39,6 @@
 - (void) msbox:(NSString*) title info:(NSString*)str;
 - (void) msbox:(NSString*) str;
 
+- (void) dismissKeyboard;
+
 @end
