@@ -63,7 +63,7 @@
 		621C2110188EAC1100F7D464 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		621C2112188EAC2300F7D464 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		621C2114188EAC4500F7D464 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		623EDF07188BEA1400437D1D /* CPOS激活.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPOS激活.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		623EDF07188BEA1400437D1D /* ActivateCPOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivateCPOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		623EDF0A188BEA1400437D1D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		623EDF0C188BEA1400437D1D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		623EDF0E188BEA1400437D1D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -172,7 +172,7 @@
 		623EDF08188BEA1400437D1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				623EDF07188BEA1400437D1D /* CPOS激活.app */,
+				623EDF07188BEA1400437D1D /* ActivateCPOS.app */,
 				623EDF28188BEA1400437D1D /* ActivateCPOSTests.xctest */,
 			);
 			name = Products;
@@ -256,7 +256,7 @@
 			);
 			name = ActivateCPOS;
 			productName = ActivateCPOS;
-			productReference = 623EDF07188BEA1400437D1D /* CPOS激活.app */;
+			productReference = 623EDF07188BEA1400437D1D /* ActivateCPOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		623EDF27188BEA1400437D1D /* ActivateCPOSTests */ = {
@@ -489,7 +489,7 @@
 				GCC_PREFIX_HEADER = "ActivateCPOS/ActivateCPOS-Prefix.pch";
 				INFOPLIST_FILE = "ActivateCPOS/ActivateCPOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "CPOS激活";
+				PRODUCT_NAME = ActivateCPOS;
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				VALID_ARCHS = "armv7 armv7s";
@@ -510,7 +510,7 @@
 				GCC_PREFIX_HEADER = "ActivateCPOS/ActivateCPOS-Prefix.pch";
 				INFOPLIST_FILE = "ActivateCPOS/ActivateCPOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "CPOS激活";
+				PRODUCT_NAME = ActivateCPOS;
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				VALID_ARCHS = "armv7 armv7s";
