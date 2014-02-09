@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "623EDF06188BEA1400437D1D"
-               BuildableName = "CPOS&#28608;&#27963;.app"
+               BuildableName = "ActivateCPOS.app"
                BlueprintName = "ActivateCPOS"
                ReferencedContainer = "container:ActivateCPOS.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "623EDF06188BEA1400437D1D"
-            BuildableName = "CPOS&#28608;&#27963;.app"
+            BuildableName = "ActivateCPOS.app"
             BlueprintName = "ActivateCPOS"
             ReferencedContainer = "container:ActivateCPOS.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "623EDF06188BEA1400437D1D"
-            BuildableName = "CPOS&#28608;&#27963;.app"
+            BuildableName = "ActivateCPOS.app"
             BlueprintName = "ActivateCPOS"
             ReferencedContainer = "container:ActivateCPOS.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "623EDF06188BEA1400437D1D"
-            BuildableName = "CPOS&#28608;&#27963;.app"
+            BuildableName = "ActivateCPOS.app"
             BlueprintName = "ActivateCPOS"
             ReferencedContainer = "container:ActivateCPOS.xcodeproj">
          </BuildableReference>
