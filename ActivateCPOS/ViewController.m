@@ -195,6 +195,9 @@
             [self msbox:@"消息" info:str];
         }
     }
+    else{
+        [self msbox:@"与激活服务器通讯失败，请联系客服，电话：400-811-9915。"];
+    }
     
     NSLog(@"request finished");
 }
