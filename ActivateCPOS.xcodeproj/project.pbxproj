@@ -23,7 +23,6 @@
 		623EDF0B188BEA1400437D1D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 623EDF0A188BEA1400437D1D /* Foundation.framework */; };
 		623EDF0D188BEA1400437D1D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 623EDF0C188BEA1400437D1D /* CoreGraphics.framework */; };
 		623EDF0F188BEA1400437D1D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 623EDF0E188BEA1400437D1D /* UIKit.framework */; };
-		623EDF15188BEA1400437D1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 623EDF13188BEA1400437D1D /* InfoPlist.strings */; };
 		623EDF17188BEA1400437D1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 623EDF16188BEA1400437D1D /* main.m */; };
 		623EDF1B188BEA1400437D1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 623EDF1A188BEA1400437D1D /* AppDelegate.m */; };
 		623EDF1E188BEA1400437D1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 623EDF1C188BEA1400437D1D /* Main.storyboard */; };
@@ -68,12 +67,10 @@
 		623EDF0C188BEA1400437D1D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		623EDF0E188BEA1400437D1D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		623EDF12188BEA1400437D1D /* ActivateCPOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActivateCPOS-Info.plist"; sourceTree = "<group>"; };
-		623EDF14188BEA1400437D1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		623EDF16188BEA1400437D1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		623EDF18188BEA1400437D1D /* ActivateCPOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ActivateCPOS-Prefix.pch"; sourceTree = "<group>"; };
 		623EDF19188BEA1400437D1D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		623EDF1A188BEA1400437D1D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		623EDF1D188BEA1400437D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		623EDF1F188BEA1400437D1D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		623EDF20188BEA1400437D1D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		623EDF22188BEA1400437D1D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -95,6 +92,7 @@
 		623FCFB8188F67D200D4FD63 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINetworkQueue.h; path = ActivateCPOS/Classes/ASINetworkQueue.h; sourceTree = "<group>"; };
 		623FCFB9188F67D200D4FD63 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = ActivateCPOS/Classes/ASIProgressDelegate.h; sourceTree = "<group>"; };
 		623FCFBA188F67D200D4FD63 /* ASIWebPageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIWebPageRequest.h; path = ActivateCPOS/Classes/ASIWebPageRequest.h; sourceTree = "<group>"; };
+		6264FDCA18B2FE8200FCFA75 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62A0A6B3188E94AD002301C8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		62A0A6B5188E95B0002301C8 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		62A0A6B6188E95B0002301C8 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				623EDF12188BEA1400437D1D /* ActivateCPOS-Info.plist */,
-				623EDF13188BEA1400437D1D /* InfoPlist.strings */,
 				623EDF16188BEA1400437D1D /* main.m */,
 				623EDF18188BEA1400437D1D /* ActivateCPOS-Prefix.pch */,
 			);
@@ -319,7 +316,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				623EDF23188BEA1400437D1D /* Images.xcassets in Resources */,
-				623EDF15188BEA1400437D1D /* InfoPlist.strings in Resources */,
 				62A0A6BA188E9954002301C8 /* Reachability.m in Resources */,
 				623EDF1E188BEA1400437D1D /* Main.storyboard in Resources */,
 			);
@@ -375,18 +371,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		623EDF13188BEA1400437D1D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				623EDF14188BEA1400437D1D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		623EDF1C188BEA1400437D1D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				623EDF1D188BEA1400437D1D /* Base */,
+				6264FDCA18B2FE8200FCFA75 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
